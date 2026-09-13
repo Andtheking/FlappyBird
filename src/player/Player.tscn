@@ -1,3 +1,43 @@
 [gd_scene format=3 uid="uid://bbm3f6j5ml2cl"]
 
+[ext_resource type="Script" uid="uid://cacajb4oen3n3" path="res://src/player/Player.cs" id="1_3ojaj"]
+[ext_resource type="Texture2D" uid="uid://bywah52tvuuld" path="res://assets/sprites/yellowbird-downflap.png" id="1_g641l"]
+[ext_resource type="Texture2D" uid="uid://cqjyltvhrxamy" path="res://assets/sprites/yellowbird-midflap.png" id="2_3ojaj"]
+[ext_resource type="Texture2D" uid="uid://deb1yq8lebbay" path="res://assets/sprites/yellowbird-upflap.png" id="3_565yv"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uetch"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_g641l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_3ojaj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_565yv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_3ojaj")
+}],
+"loop": 1,
+"name": &"fly",
+"speed": 7.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uetch"]
+radius = 13.0
+height = 36.0
+
 [node name="Player" type="CharacterBody2D" unique_id=1109675425]
+script = ExtResource("1_3ojaj")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=899580822]
+sprite_frames = SubResource("SpriteFrames_uetch")
+animation = &"fly"
+frame_progress = 0.74166995
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1784236265]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_uetch")
