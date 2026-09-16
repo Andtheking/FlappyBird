@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cv5gibmmcpsjp"]
+
+[ext_resource type="Script" uid="uid://b1k5b4j58l2a8" path="res://src/obstacle/Obstacle.cs" id="1_iypwg"]
+[ext_resource type="Texture2D" uid="uid://doh3m4cf5ed2f" path="res://assets/sprites/pipe-green.png" id="1_qjh6c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uetch"]
+size = Vector2(32, 192)
+
+[node name="Obstacle" type="Area2D" unique_id=906384514]
+script = ExtResource("1_iypwg")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=236682376]
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_qjh6c")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=201243347]
+shape = SubResource("RectangleShape2D_uetch")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

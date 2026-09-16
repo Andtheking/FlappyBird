@@ -1,8 +1,45 @@
 [gd_scene format=3 uid="uid://cp0fao4p3iffp"]
 
 [ext_resource type="PackedScene" uid="uid://bbm3f6j5ml2cl" path="res://src/player/Player.tscn" id="1_2n1gy"]
+[ext_resource type="Script" uid="uid://s5x0h3jon33k" path="res://src/core/Main.cs" id="1_68x8p"]
+[ext_resource type="Texture2D" uid="uid://c0wiw111tehoc" path="res://assets/sprites/background-day.png" id="1_egtk1"]
+[ext_resource type="PackedScene" uid="uid://cv5gibmmcpsjp" path="res://src/obstacle/Obstacle.tscn" id="4_cn5ml"]
 
-[node name="Main" type="Node2D" unique_id=1246451528]
+[node name="Main" type="Node2D" unique_id=1246451528 node_paths=PackedStringArray("ObstacleSpawn")]
+script = ExtResource("1_68x8p")
+ObstacleSpawn = NodePath("ObstacleSpawn")
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=2002846818]
+repeat_size = Vector2(576, 0)
+autoscroll = Vector2(-150, 0)
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Parallax2D" unique_id=852567607]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_egtk1")
+
+[node name="TextureRect2" type="TextureRect" parent="Parallax2D" unique_id=1236291879]
+offset_right = 40.0
+offset_bottom = 40.0
+offset_transform_enabled = true
+offset_transform_position = Vector2(288, 0)
+texture = ExtResource("1_egtk1")
+flip_h = true
 
 [node name="Player" parent="." unique_id=1109675425 instance=ExtResource("1_2n1gy")]
-position = Vector2(32, 96)
+position = Vector2(29, 244)
+
+[node name="ObstacleSpawnpoint" type="Marker2D" parent="." unique_id=1295363250]
+position = Vector2(432, 0)
+
+[node name="ObstacleSpawn" type="Timer" parent="." unique_id=1516412824]
+wait_time = 1.5
+autostart = true
+
+[node name="Obstacle2" parent="." unique_id=906384514 instance=ExtResource("4_cn5ml")]
+position = Vector2(432, 416)
+
+[node name="Obstacle" parent="." unique_id=1561265992 instance=ExtResource("4_cn5ml")]
+position = Vector2(432, 96)
+rotation = 3.1415927

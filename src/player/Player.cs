@@ -26,6 +26,14 @@ public partial class Player : CharacterBody2D
 		}
 
 		Velocity = velocity;
+		if (velocity.Y > 0 && Rotation < Mathf.Pi / 4)
+		{
+			Rotate(velocity.Y / 100 * Mathf.Pi / 64);
+		}
+		if (velocity.Y < 0 && Rotation > -Mathf.Pi / 4)
+		{
+			Rotate(velocity.Y / 100 * Mathf.Pi / 64);
+		}
 		MoveAndSlide();
 	}
 }
