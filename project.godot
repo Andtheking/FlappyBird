@@ -26,6 +26,10 @@ window/stretch/aspect="expand"
 
 project/assembly_name="Flappy Bird"
 
+[global_group]
+
+obstacles="all obstacles"
+
 [input]
 
 jump={

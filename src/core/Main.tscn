@@ -5,9 +5,12 @@
 [ext_resource type="Texture2D" uid="uid://c0wiw111tehoc" path="res://assets/sprites/background-day.png" id="1_egtk1"]
 [ext_resource type="PackedScene" uid="uid://cv5gibmmcpsjp" path="res://src/obstacle/Obstacle.tscn" id="4_cn5ml"]
 
-[node name="Main" type="Node2D" unique_id=1246451528 node_paths=PackedStringArray("ObstacleSpawn")]
+[node name="Main" type="Node2D" unique_id=1246451528 node_paths=PackedStringArray("ObstacleSpawn", "ObstacleSpawnPoint", "Player")]
 script = ExtResource("1_68x8p")
 ObstacleSpawn = NodePath("ObstacleSpawn")
+ObstacleScene = ExtResource("4_cn5ml")
+ObstacleSpawnPoint = NodePath("ObstacleSpawnpoint")
+Player = NodePath("Player")
 
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=2002846818]
 repeat_size = Vector2(576, 0)
@@ -37,9 +40,5 @@ position = Vector2(432, 0)
 wait_time = 1.5
 autostart = true
 
-[node name="Obstacle2" parent="." unique_id=906384514 instance=ExtResource("4_cn5ml")]
-position = Vector2(432, 416)
-
-[node name="Obstacle" parent="." unique_id=1561265992 instance=ExtResource("4_cn5ml")]
-position = Vector2(432, 96)
-rotation = 3.1415927
+[connection signal="Hit" from="Player" to="." method="OnPlayerHit"]
+[connection signal="timeout" from="ObstacleSpawn" to="." method="OnObstacleSpawnTimeout"]

@@ -5,7 +5,8 @@ using System.Diagnostics;
 public partial class Obstacle : Area2D
 {
 
-	private const float SPEED = 1f;
+	private Vector2 LEFT = new Vector2(-1, 0);
+	private const float SPEED = 300f;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -15,11 +16,11 @@ public partial class Obstacle : Area2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		Position += new Vector2(-1, 0) * 300 * (float) delta;
+		Position += LEFT * SPEED * (float) delta;
 	}
 
 	public void OnBodyEntered(Node2D body)
 	{
-		Debug.Print("Collisione!!");
+		((Player) body).EmitSignal(Player.SignalName.Hit);
 	}
 }

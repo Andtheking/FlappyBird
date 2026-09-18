@@ -2,9 +2,13 @@ using Godot;
 using System;
 
 public partial class Player : CharacterBody2D
-{
+{	
+	[Signal]
+	public delegate void HitEventHandler();
+
 	public const float Speed = 300.0f;
 	public const float JumpVelocity = -400.0f;
+	private bool alive = true;
 
     public override void _Ready()
     {
@@ -13,6 +17,8 @@ public partial class Player : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
+		if (!alive) return;
+
 		Vector2 velocity = Velocity;
 
 		if (!IsOnFloor())
@@ -35,5 +41,10 @@ public partial class Player : CharacterBody2D
 			Rotate(velocity.Y / 100 * Mathf.Pi / 64);
 		}
 		MoveAndSlide();
+	}
+
+	public void Die() {
+		GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
+		ProcessMode = ProcessModeEnum.Disabled;
 	}
 }

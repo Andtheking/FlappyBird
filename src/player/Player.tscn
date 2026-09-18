@@ -41,3 +41,5 @@ frame_progress = 0.74166995
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1784236265]
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_uetch")
+
+[connection signal="Hit" from="." to="." method="Die"]

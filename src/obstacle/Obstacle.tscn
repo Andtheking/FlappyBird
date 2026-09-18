@@ -6,8 +6,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uetch"]
 size = Vector2(32, 192)
 
-[node name="Obstacle" type="Area2D" unique_id=906384514]
+[node name="Obstacle" type="Area2D" unique_id=906384514 groups=["obstacles"]]
 script = ExtResource("1_iypwg")
+metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=236682376]
 scale = Vector2(0.6, 0.6)
