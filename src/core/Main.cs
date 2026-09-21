@@ -1,8 +1,4 @@
 using Godot;
-using System;
-using System.Diagnostics;
-using System.Drawing;
-using System.Text.RegularExpressions;
 
 public partial class Main : Node2D
 {
@@ -41,10 +37,13 @@ public partial class Main : Node2D
 		AddChild(newObstacleDown);
 	}
 
-	private void OnPlayerHit()
+	private void GameOver()
 	{
 		GetNode<Parallax2D>("Parallax2D").Autoscroll = new(0, 0);
-		GetTree().SetGroup("obstacles", Node.PropertyName.ProcessMode, (int) ProcessModeEnum.Disabled);
+		Callable.From(() => 
+			GetTree().SetGroup("obstacles", Node.PropertyName.ProcessMode, (int)ProcessModeEnum.Disabled)
+		).CallDeferred();
+		
 		ObstacleSpawn.Stop();
 	}
 }
