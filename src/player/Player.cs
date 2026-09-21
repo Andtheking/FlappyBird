@@ -15,6 +15,18 @@ public partial class Player : CharacterBody2D
         GetNode<AnimatedSprite2D>("AnimatedSprite2D").Play();
     }
 
+    public override void _Process(double delta)
+    {
+		if (Velocity.Y > 0 && Rotation < Mathf.Pi / 4)
+		{
+			Rotate(Velocity.Y / 100 * Mathf.Pi / 64);
+		}
+		if (Velocity.Y < 0 && Rotation > -Mathf.Pi / 4)
+		{
+			Rotate(Velocity.Y / 100 * Mathf.Pi / 64);
+		}
+    }
+
 	public override void _PhysicsProcess(double delta)
 	{
 		if (!alive) return;
@@ -32,14 +44,6 @@ public partial class Player : CharacterBody2D
 		}
 
 		Velocity = velocity;
-		if (velocity.Y > 0 && Rotation < Mathf.Pi / 4)
-		{
-			Rotate(velocity.Y / 100 * Mathf.Pi / 64);
-		}
-		if (velocity.Y < 0 && Rotation > -Mathf.Pi / 4)
-		{
-			Rotate(velocity.Y / 100 * Mathf.Pi / 64);
-		}
 		MoveAndSlide();
 	}
 
